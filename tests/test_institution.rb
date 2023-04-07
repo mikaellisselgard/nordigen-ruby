@@ -17,14 +17,14 @@ module Nordigen
 
         def test_get_institutions
             # Test get list of institutions
-            institutions = @institution.get_institutions("LV")
+            institutions = @institution.get_institutions("LV").body
             id = institutions.collect{ |k,v| k["id"]}
             assert_includes(id, @institution_id)
         end
 
         def test_get_institution_by_id
             # Test get institution by id
-            institutions = @institution.get_institution_by_id(id=@institution_id)
+            institutions = @institution.get_institution_by_id(id=@institution_id).body
             assert_equal(institutions["id"], @institution_id)
         end
 
