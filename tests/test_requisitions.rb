@@ -25,19 +25,19 @@ module Nordigen
         def test_create_requisition
             # Test create requisition
             uuid = SecureRandom.uuid
-            response = @requisition.create_requisition(**@req_params)
+            response = @requisition.create_requisition(**@req_params).body
             assert_equal(response["institution_id"], @institution_id)
         end
 
         def test_get_requisitions
             # Test get list of requisitions
-            response = @requisition.get_requisitions()
+            response = @requisition.get_requisitions().body
             assert_equal(response["previous"], nil)
         end
 
         def test_get_requisition_by_id
             # Test get requisition by id
-            new_requisition = @requisition.create_requisition(**@req_params)
+            new_requisition = @requisition.create_requisition(**@req_params).body
             id = new_requisition["id"]
             response = @requisition.get_requisition_by_id(id)
             assert_equal(response["id"], id)
@@ -45,7 +45,7 @@ module Nordigen
 
         def test_delete_requisition
             # Test delete requisition
-            new_requisition = @requisition.create_requisition(**@req_params)
+            new_requisition = @requisition.create_requisition(**@req_params).body
             id = new_requisition["id"]
             response = @requisition.delete_requisition(id)
             assert_equal(response["summary"], "Requisition deleted")

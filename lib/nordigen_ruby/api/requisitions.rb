@@ -23,24 +23,24 @@ module Nordigen
                 payload["agreement"] = agreement
             end
                         
-            return client.request.post(ENDPOINT, payload).body
+            return client.request.post(ENDPOINT, payload)
         end
 
         def get_requisitions(limit: 100, offset: 0)
             # Get all requisitions
             params = {limit: limit, offset: offset}
-            return client.request.get(ENDPOINT, params).body
+            return client.request.get(ENDPOINT, params)
         end
 
 
         def get_requisition_by_id(requisition_id)
             # Get requisition by id
-            return client.request.get("#{ENDPOINT}#{requisition_id}/").body
+            return client.request.get("#{ENDPOINT}#{requisition_id}/")
         end
 
         def delete_requisition(requisition_id)
             # Delete requisition by id 
-            return client.request.delete("#{ENDPOINT}#{requisition_id}/").body
+            return client.request.delete("#{ENDPOINT}#{requisition_id}/")
         end
 
     end

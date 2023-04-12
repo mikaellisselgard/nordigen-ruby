@@ -11,12 +11,12 @@ module Nordigen
 
         def get_institutions(country)
             # Get list of institutions
-            return client.request.get("#{ENDPOINT}/?country=#{country}").body
+            return client.request.get("#{ENDPOINT}/?country=#{country}")
         end
 
         def get_institution_by_id(id)
             # Get single institution by id
-            return client.request.get("#{ENDPOINT}/#{id}/").body
+            return client.request.get("#{ENDPOINT}/#{id}/")
         end
 
     end

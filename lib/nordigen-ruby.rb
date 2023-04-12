@@ -87,14 +87,14 @@ module Nordigen
             new_agreement = @agreement.create_agreement(
                 institution_id: institution_id,
                 max_historical_days: max_historical_days
-            )
+            ).body
             # Create requisition
             new_requsition = @requisition.create_requisition(
                 redirect_url: redirect_url,
                 reference: reference_id,
                 institution_id: institution_id,
                 agreement: new_agreement["id"]
-            )
+            ).body
 
             return new_requsition
         end

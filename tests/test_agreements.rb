@@ -17,14 +17,14 @@ module Nordigen
 
         def test_create_agreement
             # Test create agreement
-            response = @agreement.create_agreement(institution_id: @institution_id)
+            response = @agreement.create_agreement(institution_id: @institution_id).body
             assert_equal(response["institution_id"], @institution_id)
         end
 
 
         def test_get_agreement_by_id
             # Test Get agreement by id
-            create_agreement = @agreement.create_agreement(institution_id: @institution_id)
+            create_agreement = @agreement.create_agreement(institution_id: @institution_id).body
             agreement_id = create_agreement["id"]
             response = @agreement.get_agreement_by_id(agreement_id)
             assert_equal(response["id"], agreement_id)
@@ -32,13 +32,13 @@ module Nordigen
 
         def test_get_agreements
             # Test Get list of agreements
-            response = @agreement.get_agreements()
+            response = @agreement.get_agreements().body
             assert_equal(response["previous"], nil)
         end
 
         def test_delete_agreement
             # Test delete agreement
-            create_agreement = @agreement.create_agreement(institution_id: @institution_id)
+            create_agreement = @agreement.create_agreement(institution_id: @institution_id).body
             agreement_id = create_agreement["id"]
             response = @agreement.delete_agreement(agreement_id)
             assert_equal(response["summary"], "End User Agreement deleted")
@@ -47,7 +47,7 @@ module Nordigen
         def test_accept_agreement
             # Test accept agreement
             omit('Available only for premium users')
-            create_agreement = @agreement.create_agreement(institution_id: @institution_id)
+            create_agreement = @agreement.create_agreement(institution_id: @institution_id).body
             agreement_id = create_agreement["id"]
             response = @agreement.accept_agreement(
                 user_agent: "Chrome",
