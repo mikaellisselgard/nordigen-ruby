@@ -8,7 +8,7 @@ require_relative "nordigen_ruby/api/account"
 module Nordigen
     class NordigenClient
 
-        BASE_URL = "https://ob.nordigen.com/api/v2/"
+        BASE_URL = "https://bankaccountdata.gocardless.com/api/v2/"
 
         @@headers = {
             "accept" => "application/json",
